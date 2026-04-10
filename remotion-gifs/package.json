@@ -1,0 +1,21 @@
+{
+  "name": "remotion-gifs",
+  "version": "1.0.0",
+  "description": "Remotion GIF compositions for personal website",
+  "scripts": {
+    "start": "npx remotion studio",
+    "render:product": "npx remotion render --composition=ProductTech --output=../public/images/gif-product-tech.gif",
+    "render:ai": "npx remotion render --composition=NoisesOfAI --output=../public/images/gif-noises-of-ai.gif",
+    "render:all": "npm run render:product && npm run render:ai"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.447",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.447"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.28",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "slug": "play-2026",
+  "title": "PLAY 2026: The Reinvention Era",
+  "subtitle": "Organizing Berkeley's media conference to uncover the real questions shaping creative work and the creator economy",
+  "role": "Conference Co-Lead & Panel Moderator",
+  "date": "March 2026",
+  "venue": "Spieker Forum, UC Berkeley Haas",
+  "tags": ["Conference Design", "Speaker Recruitment", "Panel Moderation"],
+  "coverImage": "/images/play-cover.jpg",
+  "sections": [
+    {
+      "number": "01",
+      "heading": "What's PLAY?",
+      "variant": "light",
+      "body": "",
+      "media": [
+        {
+          "variant": "left-text-right-image",
+          "text": "<p>PLAY is Berkeley's flagship media and entertainment conference. It has run for over a decade, but this year was different. For the first time, we had full editorial independence. No co-production partners shaping the format. No inherited panel structures. Just the question my partner and I kept returning to: what conversations were actually missing?</p><p>The typical conference playbook organizes panels by vertical. Music in one room. Gaming in another. Film in a third. That approach produces conversations about what an industry is doing. <strong>We wanted to ask something different: what is the industry being asked to figure out?</p><p>That question became the starting point. We chose a theme, <strong>The Reinvention Era</strong>, and built the entire speaker slate from there.</strong></p>",
+          "images": [
+            {
+              "src": "/images/play-co-leads.jpg",
+              "alt": "ChenHsin Lee and Efe Edevbie, co-leads of PLAY 2026",
+              "caption": "Co-leads ChenHsin Lee and Efe Edevbie",
+              "rounded": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "heading": "What was the gap?",
+      "variant": "light",
+      "body": "",
+      "media": [
+        {
+          "variant": "left-text-right-image",
+          "text": "<p>The gap we kept seeing wasn't a missing topic. It was a missing frame.</p><p>AI had already changed how people find and trust information. Creative tools were reshaping what it means to make something. Creators had become business owners, not just artists. These shifts were happening in parallel, but conference programming still treated them as separate verticals.</p><p><strong>We decided to build the day so that each session was one layer of the same larger question.</strong> Storytelling and how it's being reimagined. Music and how fan engagement is transforming. Creative tools and what they should actually do for the people using them. The creator economy and what it means to build a career inside it. Information and how people navigate it now. Gaming and what interactivity looks like next.</strong></p><p><strong>Not a collection of panels. A through-line.</strong></p>",
+          "images": [
+            {
+              "src": "/images/play-day-arc.jpg",
+              "alt": "Day arc diagram showing the through-line connecting each session",
+              "caption": "Session agenda",
+              "rounded": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "heading": "Works that built the day",
+      "variant": "dark",
+      "blocks": [
+        {
+          "heading": "3+ New sessions for the New Media era",
+          "body": "",
+          "media": [
+            {
+              "variant": "left-text-right-column",
+              "text": "<p>My primary job, alongside moderating one panel, was leading the speaker recruitment process for the whole day. Since the industry is not only about traditional media anymore, what has been there but missing in the previous conversations? </p><p> <strong>The information panel needed three distinct angles on the same problem: how people find and trust information when AI is reorganizing discovery.</strong> That led to a Berkeley journalism professor who could speak to what was being lost, a founder who built TLDR newsletter from a problem he personally encountered, and a YouTube lead who understood how platforms were navigating it from the inside.</p><p><strong>The tech & startup panel followed the same logic. I wanted builders who each represented a different creative medium.</strong> Suno for music. Descript for video. Dev Stream Labs for gaming. And a content marketing veteran who had spent years building campaigns and understood deeply the creator tools. Each speaker was chosen not for the company on their badge, but because they were actively building answers to questions the industry was still forming.</p><p>We also added two sessions that PLAY had never had before. <strong>The creator economy</strong> had become a real structural shift, not just a trend, and it deserved its own conversation. We brought in Patreon's COO to keynote that session. And we added a <strong>Startup Showcase</strong>, inviting early-stage companies to present to investors and industry leaders in the room. That one came from a simple observation: Berkeley sits in the middle of the Bay Area's startup ecosystem, and the conference had never taken advantage of that.</p>"
+            }
+          ]
+        },
+        {
+          "heading": "The panel I moderated",
+          "body": "",
+          "media": [
+            {
+              "variant": "right-text-left-image",
+              "text": "<p><strong>\"New Tools, New Media Products\"</strong> was the session closest to the core question of the whole day.</p><p>I structured it as a 45-minute conversation that moved through three layers. We opened with how each speaker found their way into this space. We moved into what they were building and for whom. Then we pushed into harder territory: <strong>what happens to taste when anyone can generate polished content in seconds? What gets harder, not easier, when AI handles the easy parts? What stays irreducibly human in creative work?</strong></p><p>The framing that gave the panel its spine came from John Voss at Descript. He had written about what he calls the \"mediocre middle\": the risk that AI creative tools make it easy to produce good enough results while quietly eroding the development of real craft and judgment. I found that piece during my research, recognized it as the right anchor for the conversation, and built the panel structure around it. <strong>It shifted the question from \"look at what AI can do\" to \"what should a tool actually do for a creator.\"</strong> That is a more honest question. And it opened a conversation the room clearly wanted to have.</p>",
+              "images": [
+                {
+                  "src": "/images/play-newmedia.jpg",
+                  "alt": "New Tools, New Media Products panel",
+                  "rounded": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "",
+          "body": "",
+          "media": [
+            {
+              "variant": "photo-reel",
+              "images": [
+                { "src": "/images/play-1.jpg", "alt": "event photo 1" },
+                { "src": "/images/play-2.jpg", "alt": "event photo 2" },
+                { "src": "/images/play-3.jpg", "alt": "event photo 3" },
+                { "src": "/images/play-4.jpg", "alt": "event photo 4" },
+                { "src": "/images/play-5.jpg", "alt": "event photo 5" },
+                { "src": "/images/play-6.jpg", "alt": "event photo 6" },
+                { "src": "/images/play-7.jpg", "alt": "event photo 7" },
+                { "src": "/images/play-9.jpg", "alt": "event photo 9" },
+                { "src": "/images/play-10.jpg", "alt": "event photo 10" },
+                { "src": "/images/play-11.jpg", "alt": "event photo 11" },
+                { "src": "/images/play-12.jpg", "alt": "event photo 12" },
+                { "src": "/images/play-13.jpg", "alt": "event photo 13" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "04",
+      "heading": "Conversations that stayed.",
+      "variant": "dark",
+      "body": "<p>The evidence that the day worked wasn't a number. It was what people did after.</p><p>Avi Naim, Staff Product Designer at Suno, left and wrote about it publicly. His post reflected on what it means to stay human and intentional while building creative tools, and it extended the conversation well beyond the room. Beth Murphy, Global Head of Growth & Product Marketing at Amazon Music, wrote about her experience. Paige Fitzgerald, COO of Patreon, said the conversation stayed with her. Tiger Souvannakoumane, who had spent years leading content marketing at BuzzFeed and Meta before joining Google DeepMind, messaged me that afternoon, unprompted.</p><p>Speakers loved the interactions; Attendees stayed to eneage. That was what the conference was designed to make possible. Not a room where people sit and listen, but a room where the questions feel real enough that people don't want to leave when the session ends.</p>"
+    }
+  ],
+  "logoStrip": {
+    "label": "Speakers Represented",
+    "wallImage": "/images/logos/logos-wall.png",
+    "logos": [
+      { "name": "Suno", "src": "/images/logos/Suno.jpg" },
+      { "name": "Descript", "src": "/images/logos/descript.svg" },
+      { "name": "Amazon Music", "src": "/images/logos/amazon-music.svg" },
+      { "name": "Patreon", "src": "/images/logos/patreon.svg" },
+      { "name": "Google DeepMind", "src": "/images/logos/google-deepmind.svg" },
+      { "name": "Sony PlayStation", "src": "/images/logos/sony-playstation.svg" },
+      { "name": "Supercell", "src": "/images/logos/Supercell.png" },
+      { "name": "YouTube", "src": "/images/logos/Youtube_logo.png" },
+      { "name": "TLDR", "src": "/images/logos/TLDR.jpeg" },
+      { "name": "DevStream Labs", "src": "/images/logos/devstream-labs.svg" },
+      { "name": "Berkeley Journalism", "src": "/images/logos/berkeley-journalism.svg" },
+      { "name": "Matter Ventures", "src": "/images/logos/matter-ventures.svg" },
+      { "name": "Playful AI", "src": "/images/logos/playful-ai.svg" },
+      { "name": "Linden Labs", "src": "/images/logos/linden-labs.svg" },
+      { "name": "Kuku Studios", "src": "/images/logos/kuku-studios.svg" }
+    ]
+  },
+  "testimonials": [
+    {
+      "type": "quote",
+      "quote": "I enjoyed the conversation and appreciated your thoughtful moderation throughout! It was a pleasure to be part of PLAY, and thanks to the entire DMEC team for such a well-run conference.",
+      "speaker": "Beth Murphy",
+      "title": "Director & Global Head of Growth & Product Marketing",
+      "company": "Amazon Music"
+    },
+    {
+      "type": "quote",
+      "quote": "I loved this conversation! Thanks for the thoughtful questions on how the creator economy is changing and the role Patreon is playing in building a better internet for creators and fans.",
+      "speaker": "Paige Fitzgerald",
+      "title": "COO",
+      "company": "Patreon"
+    },
+    {
+      "type": "quote",
+      "quote": "The real question might not be what is my role or my title, but how do we stay human, collaborative, and intentional while building tools that expand creativity.",
+      "speaker": "Avi Naim",
+      "title": "Staff Product Designer",
+      "company": "Suno"
+    },
+    {
+      "type": "quote",
+      "quote": "Great job on organizing and moderating today! I was really impressed with how smooth it went!",
+      "speaker": "Tiger Souvannakoumane",
+      "title": "Product Marketing Manager",
+      "company": "Google DeepMind"
+    },
+    {
+      "type": "quote",
+      "quote": "What a privilege to attend this fantastic conference! Thank you for the opportunity.",
+      "speaker": "Bruce Lam",
+      "title": "Founder",
+      "company": "DevStream Labs"
+    }
+  ]
+}

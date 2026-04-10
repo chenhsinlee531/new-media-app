@@ -1,0 +1,61 @@
+---
+interface Props {
+  label?: string;
+  title: string;
+  description?: string;
+  dark?: boolean;
+}
+
+const { label, title, description, dark = false } = Astro.props;
+---
+
+<section class={`page-intro ${dark ? 'page-intro--dark' : ''}`}>
+  <div class="page-intro-inner">
+    {label && <p class={`label ${dark ? 'label--light' : ''} reveal`}>{label}</p>}
+    <h1 class="page-intro-title reveal reveal-delay-1">{title}</h1>
+    {description && <p class="page-intro-desc reveal reveal-delay-2">{description}</p>}
+  </div>
+</section>
+
+<style>
+  .page-intro {
+    padding-top: calc(64px + var(--space-7));
+    padding-bottom: var(--space-7);
+    padding-inline: var(--space-4);
+    background: var(--color-bg);
+  }
+
+  .page-intro--dark {
+    background: var(--color-bg-dark);
+    color: var(--color-text-dark);
+  }
+
+  .page-intro-inner {
+    max-width: var(--max-width);
+    margin-inline: auto;
+  }
+
+  .label {
+    margin-bottom: var(--space-3);
+  }
+
+  .page-intro-title {
+    font-family: var(--font-heading);
+    font-size: clamp(var(--text-3xl), 6vw, var(--text-5xl));
+    line-height: var(--leading-tight);
+    letter-spacing: -0.02em;
+    max-width: 14em;
+    margin-bottom: var(--space-4);
+  }
+
+  .page-intro-desc {
+    font-size: var(--text-lg);
+    line-height: var(--leading-loose);
+    color: var(--color-text-muted);
+    max-width: 58ch;
+  }
+
+  .page-intro--dark .page-intro-desc {
+    color: var(--color-text-dark-muted);
+  }
+</style>

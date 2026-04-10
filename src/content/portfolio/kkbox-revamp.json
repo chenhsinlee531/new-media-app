@@ -1,0 +1,134 @@
+{
+  "slug": "kkbox-revamp",
+  "title": "How KKBOX Found Its Story Against Spotify",
+  "subtitle": "A homepage redesign turned personalization into a story about knowing the listeners",
+  "role": "Product & Project Lead",
+  "markets": "5+ markets in Asia; 10M+ active users",
+  "date": "2021 - 2023",
+  "tags": ["Product Design", "Personalization", "ML Collaboration"],
+  "coverImage": "/images/kkbox-cover.jpg",
+  "sections": [
+    {
+      "number": "01",
+      "heading": "The Old Narrative",
+      "variant": "light",
+      "body": "",
+      "media": [
+        {
+          "variant": "left-text-right-image",
+          "text": "<p>By 2021, KKBOX had spent a decade building the dominant audio streaming platform across Taiwan, Hong Kong, Japan, and Southeast Asia with 10 million active users. But years of growing pressure from Spotify had made one thing clear: KKBOX needed a sharper story of its own.</p><p>The competitive threat wasn't just about catalog or price. It was about story. Spotify's pitch was global, algorithmic, and frictionless. KKBOX's had to be something different: local, contextual, and genuinely attuned to how people in this region actually live with music. The problem was that the product didn't reflect that story yet. The Homepage tab, the main screen every user saw first, looked the same for everyone. It was editorially curated by teams regionally but manually, surfacing what someone at the company thought was worth hearing. <strong>That's not a story about knowing your listener. That's a broadcast.</strong></p><p>Retention was declining. Engagement on the homepage was flat. I initiated the revamp, and the first decision I made was to bring in the company's first dedicated user researcher. Before we changed anything about the product, we needed to understand what KKBOX actually meant to the people who used it.</p>",
+          "images": [
+            {
+              "src": "/images/kkbox-before.jpg",
+              "alt": "KKBOX homepage before the redesign, showing editorial picks in every section",
+              "caption": "Every section on the old homepage was an editorial pick.",
+              "rounded": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "heading": "Insights for the New",
+      "variant": "light",
+      "body": "",
+      "media": [
+        {
+          "variant": "left-text-right-image",
+          "text": "<p>After a seven-day diary study and in-depth interviews, we had an answer. And it reframed everything.</p><p><strong>People were not looking for what's new. They were looking for audio that fit their life right now.</strong> A playlist for the commute. Something to focus to. A podcast for winding down. Whether it was a new release or something they had heard a hundred times did not really matter. What mattered was whether it matched the moment.</p><p>We also found a balance point for discovery. Users did not want a feed that was entirely familiar. That felt stale. But they did not want to be thrown into the unknown either. <strong>The sweet spot was roughly 80% familiar, 20% stretch. Enough recognition to feel like this knows me, enough novelty to keep things interesting.</strong></p><p>This was KKBOX's actual competitive edge. Not catalog size. Not algorithm sophistication. The insight was about context: that a local platform, built by people who understood daily life in Taiwan and across the region, could build something Spotify's global machine was structurally worse at. Spotify knew what you liked. KKBOX could know when and why you needed it.</p><p>That became the principle behind the entire feed. <strong>We structured it to move from the most personal content at the top to progressively more exploratory as users scrolled down.</strong></p>",
+          "images": [
+            {
+              "src": "/images/kkbox-feed-architecture.jpg",
+              "alt": "Feed architecture diagram showing content sequenced from familiar to exploratory",
+              "caption": "Feed structure: familiar at the top, exploratory toward the bottom.",
+              "rounded": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "heading": "Redesign for Stories",
+      "variant": "dark",
+      "blocks": [
+        {
+          "body": "<p><strong>A Feed That Knew the Listener</strong></p><p>The old homepage surfaced <strong>endless feed</strong> with what editors thought was worth hearing. The new one showed <strong>limited content</strong> what each listener's behavior suggested they'd care about. Recently played artists, similar taste playlists, followed podcasts.... For a product that had been editorially driven for a decade, this meant rethinking how every module on the page was sourced and ranked.</p>",
+          "media": [
+            {
+              "variant": "image-row",
+              "images": [
+                {
+                  "src": "/images/kkbox-before-homepage.jpg",
+                  "alt": "KKBOX homepage before redesign with editorial picks labeled",
+                  "caption": "Before: one editorial feed for everyone.",
+                  "rounded": true
+                },
+                {
+                  "src": "/images/kkbox-after-homepage.jpg",
+                  "alt": "KKBOX homepage after redesign with personalized modules labeled",
+                  "caption": "After: personalized modules based on listening behavior.",
+                  "rounded": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "<p><strong>Your Scenes for the Moment</strong></p><p>We created default popular listening scenes: Relax, Focus, and Refreshing, that grouped playlists around how users wanted to feel rather than what genre they preferred. Users could also create their own scenes to match their daily routines.</p><p>The design was intentionally simple. Someone who listens to different things before bed every night could build a scene for that and reach it in one tap. The point was to make the right audio easy to find in the moment you need it.</p>",
+          "media": [
+            {
+              "variant": "image-row",
+              "images": [
+                {
+                  "src": "/images/kkbox-scenes-default.jpg",
+                  "alt": "Default listening scenes showing Relax, Focus, and Refreshing tabs",
+                  "caption": "A feature serves different moods and moments",
+                  "rounded": true
+                },
+                {
+                  "src": "/images/kkbox-scenes-campaign.jpg",
+                  "alt": "Scenes area during a promotional campaign with artist-curated playlists",
+                  "caption": "Artists made moments more engaging",
+                  "rounded": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "<p><strong>Turning Relevance into Choice</strong></p><p>New AI personalized playlists powered by the recommendation algorithm were also built. These factored in listening patterns, time of day, recent behavior, and taste similarity. <strong>The goal was playlists that felt right for now, not just playlists that sounded like what you played last week.</strong></p><p>One new feature, Surprise Picks, was introduced as a daily set of eight songs, mostly drawn from genres a user already loved, with a few picks deliberately one or two steps outside their usual range. A feature put the 80/20 principle into practice at the song level.</p><p>We also gave more visual cues throughout to help users identify interested contents on the feed. Instead of showing one playlist at a time, the new design displayed multiple cards side by side so users could scan and choose across options. Each card surfaced artists the user already followed or had saved in their library, signaling relevance before they even tapped in.</p>",
+          "media": [
+      
+            {
+              "variant": "centered",
+              "images": [
+                {
+                  "src": "/images/kkbox-surprise-picks.gif",
+                  "alt": "Surprise Picks feature showing randomized daily song recommendations",
+                  "caption": "Surprise Picks: eight daily songs, mostly familiar, a few intentionally not.",
+                  "rounded": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "04",
+      "heading": "Accomplishments",
+      "variant": "dark",
+      "body": "<p>The metrics told one story. The more interesting one happened underneath them.</p><p>The Your Scenes feature, designed to help users find the right audio for the right moment became the company’s most effective promotional surface. Local artist collabs, yearly wrapped, seasonal campaigns, curated editorial moments: all of it fit naturally into a container that users already understood and trusted. <p>Things weren't designed for marketing became the best, when the underlying story was right.</p>",
+      "media": []
+    }
+  ],
+  "metrics": [
+    { "value": "81% to 95%", "label": "Customer satisfaction", "context": "Post-launch user survey" },
+    { "value": "+2%", "label": "Retention", "context": "First quarter after launch" },
+    { "value": "+5%", "label": "Homepage play rate", "context": "Users listening directly from the homepage" },
+    { "value": "+38%", "label": "AI playlist play rate", "context": "Personalized playlists vs. previous editorial picks" }
+  ],
+  "testimonials": []
+}

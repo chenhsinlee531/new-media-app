@@ -1,0 +1,496 @@
+---
+interface Props {
+  variant: 'full-bleed' | 'left-text-right-image' | 'right-text-left-image' | 'image-row' | 'centered' | 'stacked-photos' | 'left-text-right-stack' | 'left-text-right-column' | 'featured-grid' | 'photo-reel';
+  images?: Array<{ src: string; alt: string; caption?: string; rounded?: boolean }>;
+  text?: string;
+  dark?: boolean;
+  reversed?: boolean;
+}
+
+const { variant, images = [], text, dark = false, reversed = false } = Astro.props;
+---
+
+<div class={`media-block media-block--${variant} ${dark ? 'media-block--dark' : ''} ${reversed ? 'media-block--reversed' : ''} reveal`}>
+  {variant === 'full-bleed' && images[0] && (
+    <figure class="media-full-bleed">
+      <img src={images[0].src} alt={images[0].alt} loading="lazy"
+           class={images[0].rounded ? 'rounded' : ''} />
+      {images[0].caption && <figcaption class="caption label">{images[0].caption}</figcaption>}
+    </figure>
+  )}
+
+  {(variant === 'left-text-right-image' || variant === 'right-text-left-image') && (
+    <div class={`media-split ${variant === 'right-text-left-image' ? 'media-split--reversed' : ''}`}>
+      {text && <div class="media-split-text" set:html={text} />}
+      {images[0] && (
+        <figure class="media-split-image">
+          <img src={images[0].src} alt={images[0].alt} loading="lazy"
+               class={images[0].rounded ? 'rounded' : ''} />
+          {images[0].caption && <figcaption class="caption label">{images[0].caption}</figcaption>}
+        </figure>
+      )}
+    </div>
+  )}
+
+  {variant === 'image-row' && (
+    <div class="media-row">
+      {images.map((img) => (
+        <figure class="media-row-item">
+          <img src={img.src} alt={img.alt} loading="lazy"
+               class={img.rounded ? 'rounded' : ''} />
+          {img.caption && <figcaption class="caption label">{img.caption}</figcaption>}
+        </figure>
+      ))}
+    </div>
+  )}
+
+  {variant === 'centered' && images[0] && (
+    <figure class="media-centered">
+      <img src={images[0].src} alt={images[0].alt} loading="lazy"
+           class={images[0].rounded ? 'rounded' : ''} />
+      {images[0].caption && <figcaption class="caption label">{images[0].caption}</figcaption>}
+    </figure>
+  )}
+
+  {variant === 'left-text-right-stack' && (
+    <div class="media-split media-split--stack">
+      {text && <div class="media-split-text" set:html={text} />}
+      <div class="media-stack-col">
+        {images.map((img: any, i: number) => (
+          <figure class={`stack-col-item stack-col-item--${i}${img.landscape ? ' stack-col-item--landscape' : ''}`}>
+            <img src={img.src} alt={img.alt} loading="lazy" />
+          </figure>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {variant === 'left-text-right-column' && (
+    <div class="media-split media-split--column">
+      {text && <div class="media-split-text" set:html={text} />}
+      <div class="media-col-stack">
+        {images.map((img) => (
+          <figure class="col-stack-item">
+            <img src={img.src} alt={img.alt} loading="lazy" />
+            {img.caption && <figcaption class="caption label">{img.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {variant === 'featured-grid' && (
+    <div class="media-featured-grid">
+      {images[0] && (
+        <figure class="featured-main">
+          <img src={images[0].src} alt={images[0].alt} loading="lazy"
+               class={images[0].rounded ? 'rounded' : ''} />
+          {images[0].caption && <figcaption class="caption label">{images[0].caption}</figcaption>}
+        </figure>
+      )}
+      <div class="featured-side">
+        {images.slice(1).map((img) => (
+          <figure class="featured-side-item">
+            <img src={img.src} alt={img.alt} loading="lazy"
+                 class={img.rounded ? 'rounded' : ''} />
+            {img.caption && <figcaption class="caption label">{img.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {variant === 'photo-reel' && (
+    <div class="photo-reel-wrap">
+      <div class="photo-reel">
+        {images.map((img) => (
+          <figure class="reel-item">
+            <img src={img.src} alt={img.alt} loading="lazy" />
+          </figure>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {variant === 'stacked-photos' && (
+    <div class="media-stacked">
+      {images.map((img, i) => (
+        <figure class={`media-stacked-item media-stacked-item--${i}`}>
+          <img src={img.src} alt={img.alt} loading="lazy" />
+        </figure>
+      ))}
+    </div>
+  )}
+</div>
+
+<style>
+  .media-block { margin-block: var(--space-5); }
+
+  /* Full bleed */
+  .media-block--full-bleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  .media-full-bleed img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .media-full-bleed figcaption {
+    text-align: center;
+    padding: var(--space-2) var(--space-4);
+    color: var(--color-text-muted);
+  }
+
+  .media-block--full-bleed.media-block--dark figcaption {
+    color: var(--color-text-dark-muted);
+  }
+
+  /* Asymmetric split */
+  .media-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .media-split {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+
+    .media-split--reversed {
+      direction: rtl;
+    }
+
+    .media-split--reversed > * {
+      direction: ltr;
+    }
+  }
+
+  .media-split-text {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  .media-split-text :global(p) {
+    margin-bottom: 1.5em;
+  }
+
+  .media-split-text :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .media-block--dark .media-split-text {
+    color: var(--color-text-dark);
+  }
+
+  .media-split-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Image row */
+  .media-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-2);
+  }
+
+  .media-row-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+  }
+
+  /* Centered */
+  .media-centered {
+    max-width: 800px;
+    margin-inline: auto;
+  }
+
+  .media-centered img { width: 100%; }
+
+  /* Captions */
+  .caption {
+    margin-top: var(--space-1);
+    color: var(--color-text-muted);
+    display: block;
+    text-align: center;
+  }
+
+  /* Row captions align left under each photo */
+  .media-row-item .caption {
+    text-align: left;
+  }
+
+  .media-block--dark .caption { color: var(--color-text-dark-muted); }
+
+  /* Stacked photos */
+  .media-stacked {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .media-stacked-item {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  }
+
+  .media-stacked-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 4/3;
+  }
+
+  /* Slight rotations for visual interest */
+  .media-stacked-item--0 { transform: rotate(-1.5deg); }
+  .media-stacked-item--1 { transform: rotate(1deg); margin-top: var(--space-3); }
+  .media-stacked-item--2 { transform: rotate(1.2deg); }
+  .media-stacked-item--3 { transform: rotate(-0.8deg); margin-top: var(--space-3); }
+
+  /* Featured grid: one large left, two stacked right */
+  .media-featured-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: 1fr;
+    gap: var(--space-2);
+  }
+
+  .featured-main {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+
+  .featured-main img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .featured-side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .featured-side-item {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+
+  .featured-side-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media (max-width: 767px) {
+    .media-featured-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Reversed featured grid: side images left, main image right */
+  .media-block--reversed .media-featured-grid {
+    direction: rtl;
+  }
+  .media-block--reversed .media-featured-grid > * {
+    direction: ltr;
+  }
+
+  /* Left-text right photo scatter collage */
+  .media-split--stack {
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .media-split--stack {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .media-stack-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: var(--space-1);
+    padding: var(--space-3); /* breathing room so rotated edges don't clip */
+  }
+
+  .stack-col-item {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stack-col-item img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    display: block;
+    object-fit: cover;
+  }
+
+  .stack-col-item--landscape img {
+    aspect-ratio: 4/3;
+  }
+
+  /* Scattered rotations + nudges — each photo feels independently placed */
+  .stack-col-item--0 { transform: rotate(-4deg)  translate(-6px, 4px);  z-index: 2; }
+  .stack-col-item--1 { transform: rotate(6deg)   translate(4px, -6px);  z-index: 1; }
+  .stack-col-item--2 { transform: rotate(3deg)   translate(-4px, -4px); z-index: 1; }
+  .stack-col-item--3 { transform: rotate(-5deg)  translate(6px, 6px);   z-index: 2; }
+
+  .stack-col-item:hover {
+    transform: rotate(0deg) translate(0, 0) scale(1.04);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.34);
+    z-index: 10;
+  }
+
+  /* Left text / right column of photos — photos fill the exact height of the text */
+  .media-split--column {
+    align-items: stretch;
+  }
+
+  @media (min-width: 768px) {
+    .media-split--column {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+
+  .media-col-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .col-stack-item {
+    flex: 1;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .col-stack-item img {
+    width: 100%;
+    flex: 1;
+    object-fit: cover;
+    display: block;
+    min-height: 0; /* allow flex shrink */
+  }
+
+  .col-stack-item .caption {
+    flex-shrink: 0;
+    text-align: left;
+    padding-top: var(--space-1);
+  }
+
+  /* Rounded utility */
+  img.rounded { border-radius: var(--radius-md); }
+
+  /* Photo reel */
+  .photo-reel-wrap {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    margin-block: var(--space-5);
+    overflow: hidden;
+  }
+
+  .photo-reel {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-2);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
+    padding-inline: var(--space-4);
+  }
+
+  .photo-reel::-webkit-scrollbar { display: none; }
+  .photo-reel.dragging { cursor: grabbing; }
+
+  .reel-item {
+    flex-shrink: 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    height: 280px;
+  }
+
+  .reel-item img {
+    height: 100%;
+    width: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.photo-reel').forEach((reel) => {
+    let paused = false;
+    let isDragging = false;
+    let startX = 0;
+    let startScroll = 0;
+
+    // Drag to scroll
+    reel.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      paused = true;
+      reel.classList.add('dragging');
+      startX = e.pageX;
+      startScroll = reel.scrollLeft;
+    });
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      paused = false;
+      reel.classList.remove('dragging');
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      reel.scrollLeft = startScroll - (e.pageX - startX) * 1.5;
+    });
+
+    // Pause on hover
+    reel.addEventListener('mouseenter', () => { if (!isDragging) paused = true; });
+    reel.addEventListener('mouseleave', () => { if (!isDragging) paused = false; });
+
+    // rAF auto-scroll
+    let pos = 0;
+    function tick() {
+      if (!paused) {
+        pos += 0.6;
+        if (pos >= reel.scrollWidth - reel.clientWidth) pos = 0;
+        reel.scrollLeft = pos;
+      } else {
+        pos = reel.scrollLeft;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+</script>

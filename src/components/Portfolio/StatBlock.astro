@@ -1,0 +1,48 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  context?: string;
+}
+
+const { value, label, context } = Astro.props;
+---
+
+<div class="stat-block reveal" data-stat-value={value}>
+  <span class="stat-number" data-count-target={value}>{value}</span>
+  <span class="stat-label">{label}</span>
+  {context && <span class="stat-context">{context}</span>}
+</div>
+
+<style>
+  .stat-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .stat-number {
+    font-family: var(--font-heading);
+    font-size: var(--text-stat);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--color-accent);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--color-text-dark);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-size: var(--text-xs);
+  }
+
+  .stat-context {
+    font-size: var(--text-sm);
+    color: var(--color-text-dark-muted);
+    line-height: var(--leading-normal);
+  }
+</style>

@@ -1,0 +1,38 @@
+---
+import StatBlock from './StatBlock.astro';
+
+interface Metric {
+  value: string;
+  label: string;
+  context?: string;
+}
+
+interface Props {
+  metrics: Metric[];
+}
+
+const { metrics } = Astro.props;
+---
+
+<div class="stat-row dark-section">
+  <div class="stat-row-inner">
+    {metrics.map((m) => (
+      <StatBlock value={m.value} label={m.label} context={m.context} />
+    ))}
+  </div>
+</div>
+
+<style>
+  .stat-row {
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .stat-row-inner {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-6);
+    align-items: start;
+  }
+</style>

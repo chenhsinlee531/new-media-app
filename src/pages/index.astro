@@ -1,0 +1,515 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="ChenHsin Lee — Product & Story Builder">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-blocks" aria-hidden="true">
+      <!-- Left side scattered blocks -->
+      <span class="block block--left-strip"></span>
+      <span class="block block--l1"></span>
+      <span class="block block--l2"></span>
+      <span class="block block--l3"></span>
+      <span class="block block--l4"></span>
+
+      <!-- Right side scattered blocks -->
+      <span class="block block--r1"></span>
+      <span class="block block--r2"></span>
+      <span class="block block--r3"></span>
+      <span class="block block--r4"></span>
+      <span class="block block--r5"></span>
+
+      <!-- Bottom-left checkerboard 2x3 -->
+      <div class="checker checker--bl">
+        <span></span><span></span>
+        <span></span><span></span>
+        <span></span><span></span>
+      </div>
+
+      <!-- Bottom-right checkerboard -->
+      <div class="checker checker--br">
+        <span></span><span></span>
+        <span></span><span></span>
+        <span></span><span></span>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hero-card__accent"></div>
+      <div class="hero-card__inner">
+        <div class="hero-card__text">
+          <h1 class="hero-headline reveal">
+            I craft stories people connect with
+          </h1>
+          <div class="hero-actions reveal reveal-delay-1">
+            <a href="/portfolio" class="hero-btn hero-btn--solid">View work</a>
+            <a href="/noises-of-ai" class="hero-btn hero-btn--outline">Read Noises of AI</a>
+          </div>
+          <p class="hero-meta reveal reveal-delay-2">
+            Product designer &amp; builder · SF / Taipei
+          </p>
+        </div>
+
+        <div class="hero-card__media">
+          <img src="/images/hero-photo.gif" alt="" class="hero-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / EXPANDED INTRO -->
+  <section class="about section-pad">
+    <div class="about-inner">
+      <div class="about-eyebrow label reveal">About</div>
+      <div class="about-body">
+        <p class="about-text reveal reveal-delay-1">
+          I work at the intersection of tech, media, and audience. My background is in product, but the thread across my work is finding the story behind what a company builds and making people care about it. I've done that in music streaming at scale, and on the conference stage with founders and leaders from Descript, Suno, Patreon, PlayStation, and Discord. I'm especially interested in how AI reshapes creativity and judgment, and what helps technology support better thinking rather than replace it.
+        </p>
+        <div class="about-tags reveal reveal-delay-3">
+          <span class="tag">Product Design</span>
+          <span class="tag">AI Tools</span>
+          <span class="tag">Creative Technology</span>
+          <span class="tag">Media Strategy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION PREVIEWS -->
+  <section class="previews dark-section section-pad">
+    <div class="container">
+      <div class="previews-header reveal">
+        <p class="label label--light">Selected work & writing</p>
+      </div>
+      <div class="previews-grid">
+
+        <!-- Portfolio preview -->
+        <a href="/portfolio" class="preview-card reveal">
+          <div class="preview-card-image">
+            <img src="/images/gif-product-tech.gif" alt="Product technology & new media" class="preview-gif" />
+          </div>
+          <div class="preview-card-body">
+            <div class="preview-meta">
+              <span class="label label--light">Portfolio</span>
+              <span class="preview-arrow">→</span>
+            </div>
+            <h2 class="preview-title">Telling a Better Story</h2>
+            <p class="preview-desc">Two projects, two formats. One in streaming, one in live media. Both start from the same question: what needs to be communicated here, and who is it for?</p>
+            <span class="btn btn--ghost-light preview-btn">View case studies</span>
+          </div>
+        </a>
+
+        <!-- Blog preview -->
+        <a href="/noises-of-ai" class="preview-card reveal reveal-delay-1">
+          <div class="preview-card-image">
+            <img src="/images/gif-noises-of-ai.gif" alt="Noises of AI" class="preview-gif" />
+          </div>
+          <div class="preview-card-body">
+            <div class="preview-meta">
+              <span class="label label--light">Writing</span>
+              <span class="preview-arrow">→</span>
+            </div>
+            <h2 class="preview-title">Noises of AI</h2>
+            <p class="preview-desc">Notes on AI, media, and product judgment. What's worth building, what's overhyped, and what should stay human.</p>
+            <span class="btn btn--ghost-light preview-btn">Read notes</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT STRIP -->
+  <section class="contact-strip section-pad--sm">
+    <div class="container contact-inner">
+      <p class="contact-line reveal">
+        Open to conversations about media, AI products, and creative work.
+      </p>
+      <a href="mailto:chenhsinlee@gmail.com" class="btn btn--primary reveal reveal-delay-1">
+        Get in touch
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ── HERO ─────────────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 64px; /* header height */
+    padding-bottom: var(--space-4);
+    background: #FAF8F5;
+    overflow: hidden;
+  }
+
+  /* Layer 1 — scattered geometric blocks */
+  .hero-blocks {
+    position: absolute;
+    inset: 64px 0 0 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .block {
+    position: absolute;
+    background: #C94EAC;
+    display: block;
+  }
+
+  .block--left-strip {
+    left: 0;
+    top: 6%;
+    width: 120px;
+    height: 54%;
+  }
+
+  .block--l1 { left: 140px; top: 12%;  width: 56px; height: 56px; }
+  .block--l2 { left: 96px;  top: 68%;  width: 72px; height: 40px; }
+  .block--l3 { left: 180px; top: 78%;  width: 44px; height: 44px; }
+  .block--l4 { left: 60px;  top: 30%;  width: 36px; height: 36px; }
+
+  .block--r1 { right: 0;    top: 8%;   width: 90px;  height: 200px; }
+  .block--r2 { right: 110px; top: 18%; width: 56px;  height: 56px; }
+  .block--r3 { right: 40px;  top: 44%; width: 70px;  height: 70px; }
+  .block--r4 { right: 0;     top: 62%; width: 130px; height: 60px; }
+  .block--r5 { right: 160px; top: 72%; width: 44px;  height: 44px; }
+
+  /* Checkerboard clusters (2 cols x 3 rows) */
+  .checker {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(2, 56px);
+    grid-template-rows: repeat(3, 56px);
+    gap: 0;
+  }
+
+  .checker span {
+    width: 56px;
+    height: 56px;
+    background: transparent;
+  }
+  .checker span:nth-child(1),
+  .checker span:nth-child(4),
+  .checker span:nth-child(5) {
+    background: #C94EAC;
+  }
+
+  .checker--bl {
+    left: 24px;
+    bottom: 32px;
+  }
+
+  .checker--br {
+    right: 24px;
+    bottom: 24px;
+  }
+
+  /* Layer 2 — Dark rounded card */
+  .hero-card {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 1280px;
+    height: min(80vh, 720px);
+    background: #0E0E0E;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-card__accent {
+    flex-shrink: 0;
+    width: 100%;
+    height: 40px;
+    background: #C94EAC;
+  }
+
+  .hero-card__inner {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .hero-card__text {
+    padding: clamp(28px, 5vw, 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .hero-headline {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 4.6vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #FAF8F5;
+    max-width: 20ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 13px 28px;
+    border-radius: 9999px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    border: 1.5px solid transparent;
+    transition: background var(--duration-fast) var(--ease-out),
+                color var(--duration-fast) var(--ease-out);
+    cursor: pointer;
+  }
+
+  .hero-btn--solid {
+    background: #FAF8F5;
+    color: #0E0E0E;
+    border-color: #FAF8F5;
+  }
+  .hero-btn--solid:hover {
+    background: #C94EAC;
+    border-color: #C94EAC;
+    color: #FAF8F5;
+  }
+
+  .hero-btn--outline {
+    background: transparent;
+    color: #FAF8F5;
+    border-color: #FAF8F5;
+  }
+  .hero-btn--outline:hover {
+    background: #FAF8F5;
+    color: #0E0E0E;
+  }
+
+  .hero-meta {
+    font-size: var(--text-s);
+    font-weight: 500;
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-top: var(--space-2);
+  }
+
+  .hero-card__media {
+    position: relative;
+    background: #1a1a1a;
+    min-height: 240px;
+    overflow: hidden;
+  }
+
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-photo-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.45);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) {
+    .hero-card {
+      width: 90%;
+    }
+    .hero-card__inner {
+      grid-template-columns: 1fr 40%;
+    }
+    .hero-card__media {
+      min-height: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero-card {
+      width: 94%;
+      height: auto;
+      min-height: 80vh;
+    }
+    .hero-blocks {
+      display: none;
+    }
+  }
+
+  /* ── ABOUT ────────────────────────────────────── */
+  .about {
+    background: var(--color-bg);
+  }
+
+  .about-inner {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-4);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 768px) {
+    .about-inner {
+      grid-template-columns: 180px 1fr;
+      gap: var(--space-7);
+    }
+  }
+
+  .about-eyebrow {
+    padding-top: 6px;
+  }
+
+  .about-text {
+    font-size: var(--text-lg);
+    line-height: var(--leading-loose);
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+    max-width: 60ch;
+  }
+
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  .tag {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+  }
+
+  /* ── PREVIEWS ─────────────────────────────────── */
+  .previews-header {
+    margin-bottom: var(--space-5);
+  }
+
+  .previews-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .previews-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .preview-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg-card-dark);
+    border: 1px solid var(--color-border-dark);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: transform var(--duration-base) var(--ease-out),
+                border-color var(--duration-base) var(--ease-out);
+  }
+
+  .preview-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-accent);
+  }
+
+  .preview-card-image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+
+  .preview-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .preview-card-body {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex: 1;
+  }
+
+  .preview-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .preview-arrow {
+    font-size: var(--text-lg);
+    color: var(--color-text-dark-muted);
+    transition: transform var(--duration-fast) var(--ease-out),
+                color var(--duration-fast);
+  }
+
+  .preview-card:hover .preview-arrow {
+    transform: translateX(4px);
+    color: var(--color-accent);
+  }
+
+  .preview-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    line-height: var(--leading-tight);
+    color: var(--color-text-dark);
+  }
+
+  .preview-desc {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--color-text-dark-muted);
+    flex: 1;
+  }
+
+  .preview-btn {
+    margin-top: var(--space-2);
+    align-self: flex-start;
+  }
+
+  /* ── CONTACT STRIP ────────────────────────────── */
+  .contact-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-5);
+  }
+
+  .contact-line {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    max-width: 48ch;
+  }
+</style>

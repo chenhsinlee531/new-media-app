@@ -1,0 +1,172 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/Shared/PageIntro.astro';
+
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .map(entry => ({ slug: entry.id.replace('.md', ''), ...entry.data }))
+  .sort((a, b) => b.date.getTime() - a.date.getTime());
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<BaseLayout title="Noises of AI — ChenHsin Lee" description="Notes on AI, media, and product judgment.">
+  <PageIntro
+    label="Writing"
+    title="Noises of AI"
+    description="Notes on AI, media, and product judgment. What's worth building, what's overhyped, and what should stay human."
+  />
+
+  <section class="blog-grid-section section-pad">
+    <div class="container">
+      {posts.length === 0 ? (
+        <p class="empty-state label">Posts coming soon.</p>
+      ) : (
+        <div class={`masonry-grid ${posts.length <= 2 ? 'masonry-grid--sparse' : ''}`}>
+          {posts.map((post, i) => (
+            <a
+              href={`/noises-of-ai/${post.slug}`}
+              class={`post-card post-card--${post.cardSize ?? 'compact'} reveal`}
+              style={`transition-delay: ${i * 80}ms`}
+            >
+              <div class="post-card-inner">
+                <div class="post-meta">
+                  <time class="post-date label" datetime={post.date.toISOString().split('T')[0]}>
+                    {formatDate(post.date)}
+                  </time>
+                  {post.tags?.length > 0 && (
+                    <div class="post-tags">
+                      {post.tags.map((tag: string) => (
+                        <span class="post-tag">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <h2 class="post-title">{post.title}</h2>
+
+                {post.excerpt && (
+                  <p class="post-excerpt">{post.excerpt}</p>
+                )}
+
+                <span class="post-read label">Read →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-grid-section { background: var(--color-bg); }
+
+  /* Masonry via CSS columns */
+  .masonry-grid {
+    columns: 1;
+    column-gap: var(--space-3);
+  }
+
+  @media (min-width: 640px) {
+    .masonry-grid { columns: 2; }
+  }
+
+  @media (min-width: 1024px) {
+    .masonry-grid { columns: 3; }
+  }
+
+  /* Sparse: center single column */
+  .masonry-grid--sparse {
+    columns: 1;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .post-card {
+    display: block;
+    break-inside: avoid;
+    margin-bottom: var(--space-3);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    transition: border-color var(--duration-fast),
+                transform var(--duration-base) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-out);
+    min-height: 160px;
+  }
+
+  .post-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .post-card--tall .post-card-inner { padding-bottom: var(--space-6); }
+  .post-card--wide { grid-column: span 1; }
+
+  .post-card-inner {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .post-date { color: var(--color-text-muted); }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .post-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    background: var(--color-bg-card);
+    color: var(--color-text-muted);
+  }
+
+  .post-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .post-excerpt {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  .post-read {
+    margin-top: auto;
+    color: var(--color-text-muted);
+    transition: color var(--duration-fast);
+  }
+
+  .post-card:hover .post-read { color: var(--color-accent); }
+
+  .empty-state {
+    text-align: center;
+    padding: var(--space-8) 0;
+    color: var(--color-text-muted);
+  }
+</style>

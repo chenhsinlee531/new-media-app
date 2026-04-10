@@ -1,0 +1,162 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const { slug } = Astro.params;
+const entry = await getEntry('blog', slug as string);
+
+if (!entry) return Astro.redirect('/noises-of-ai');
+
+const { Content } = await render(entry);
+const { title, date, tags, excerpt } = entry.data;
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<BaseLayout title={`${title} — Noises of AI`} description={excerpt}>
+  <article class="post-article">
+    <header class="post-header">
+      <div class="post-header-inner">
+        <a href="/noises-of-ai" class="back-link label">← Noises of AI</a>
+
+        <div class="post-meta">
+          <time class="label" datetime={date.toISOString().split('T')[0]}>{formatDate(date)}</time>
+          {tags && tags.length > 0 && (
+            <div class="post-tags">
+              {tags.map((tag: string) => (
+                <span class="post-tag">{tag}</span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <h1 class="post-title reveal">{title}</h1>
+
+        {excerpt && (
+          <p class="post-excerpt reveal reveal-delay-1">{excerpt}</p>
+        )}
+      </div>
+    </header>
+
+    <div class="post-body">
+      <div class="post-content reveal"><Content /></div>
+    </div>
+
+    <footer class="post-footer">
+      <div class="container">
+        <a href="/noises-of-ai" class="btn btn--ghost">← All posts</a>
+      </div>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .post-article { background: var(--color-bg); }
+
+  .post-header {
+    padding-top: calc(64px + var(--space-7));
+    padding-bottom: var(--space-7);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post-header-inner {
+    max-width: var(--max-width-text);
+    margin-inline: auto;
+    padding-inline: var(--space-4);
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: var(--space-4);
+    color: var(--color-text-muted);
+    transition: color var(--duration-fast);
+  }
+
+  .back-link:hover { color: var(--color-text); }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .post-meta time { color: var(--color-text-muted); }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .post-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: var(--radius-full);
+    background: var(--color-bg-card);
+    color: var(--color-text-muted);
+  }
+
+  .post-title {
+    font-family: var(--font-heading);
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+    line-height: var(--leading-tight);
+    letter-spacing: -0.025em;
+    margin-bottom: var(--space-3);
+  }
+
+  .post-excerpt {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-loose);
+    font-style: italic;
+  }
+
+  /* Post body */
+  .post-body {
+    padding: var(--space-7) var(--space-4);
+  }
+
+  .post-content {
+    max-width: var(--max-width-text);
+    margin-inline: auto;
+    font-size: var(--text-base);
+    line-height: var(--leading-loose);
+    color: var(--color-text);
+  }
+
+  .post-content :global(p) {
+    margin-bottom: var(--space-4);
+  }
+
+  .post-content :global(h2) {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+    line-height: var(--leading-tight);
+  }
+
+  .post-content :global(strong) { font-weight: 600; }
+
+  .post-content :global(em) { font-style: italic; }
+
+  .post-content :global(blockquote) {
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-4);
+    margin-block: var(--space-5);
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+
+  .post-footer {
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+</style>

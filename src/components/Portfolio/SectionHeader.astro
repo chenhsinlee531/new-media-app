@@ -1,0 +1,45 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  dark?: boolean;
+}
+
+const { number, title, dark = false } = Astro.props;
+---
+
+<div class={`section-header reveal ${dark ? 'section-header--dark' : ''}`}>
+  <span class="section-num">{number}</span>
+  <h2 class="section-title">{title}</h2>
+</div>
+
+<style>
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-5);
+  }
+
+  .section-header--dark {
+    border-color: var(--color-border-dark);
+  }
+
+  .section-num {
+    font-family: var(--font-heading);
+    font-size: clamp(var(--text-xl), 2.5vw, 2.25rem);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(var(--text-2xl), 3.5vw, var(--text-3xl));
+    line-height: var(--leading-tight);
+    letter-spacing: -0.015em;
+  }
+</style>

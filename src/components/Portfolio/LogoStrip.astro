@@ -1,0 +1,136 @@
+---
+interface Props {
+  label?: string;
+  wallImage?: string;
+  logos?: Array<{ name: string; src: string }>;
+  dark?: boolean;
+}
+
+const { label = 'Speakers Represented', wallImage, logos = [], dark = false } = Astro.props;
+---
+
+<div class={`logo-strip ${dark ? 'logo-strip--dark' : ''}`}>
+  {label && <p class="logo-strip-label label">{label}</p>}
+
+  {wallImage ? (
+    <div class="logo-wall">
+      <img src={wallImage} alt="Speakers represented at PLAY 2026" class="logo-wall-img" loading="lazy" />
+    </div>
+  ) : (
+    <div class="logo-grid">
+      {logos.map((logo) => (
+        <div class="logo-item" title={logo.name}>
+          <img
+            src={logo.src}
+            alt={logo.name}
+            loading="lazy"
+            class="logo-img"
+            onerror="this.parentElement.classList.add('logo-item--fallback'); this.style.display='none'; this.parentElement.querySelector('.logo-fallback').style.display='block';"
+          />
+          <span class="logo-fallback label" style="display:none">{logo.name}</span>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
+<style>
+  .logo-strip {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background: var(--color-bg-card);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding-block: var(--space-5);
+    padding-inline: var(--space-5);
+  }
+
+  .logo-strip--dark {
+    background: var(--color-bg-card-dark);
+    border-color: var(--color-border-dark);
+  }
+
+  .logo-strip-label {
+    text-align: center;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    letter-spacing: var(--tracking-wider);
+  }
+
+  .logo-strip--dark .logo-strip-label {
+    color: var(--color-text-dark-muted);
+  }
+
+  /* Single wall image mode */
+  .logo-wall {
+    max-width: 960px;
+    margin-inline: auto;
+  }
+
+  .logo-wall-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Grayscale + warm tint to match site palette */
+    filter: grayscale(1) sepia(0.12) brightness(0.85);
+    opacity: 0.75;
+  }
+
+  .logo-strip--dark .logo-wall-img {
+    filter: grayscale(1) invert(1) sepia(0.08) brightness(0.9);
+    opacity: 0.6;
+  }
+
+  /* Individual logo grid mode */
+  .logo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2) var(--space-3);
+    max-width: var(--max-width-wide, 1200px);
+    margin-inline: auto;
+  }
+
+  .logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding-inline: var(--space-2);
+    opacity: 0.5;
+    transition: opacity var(--duration-fast);
+  }
+
+  .logo-item:hover { opacity: 0.8; }
+
+  .logo-img {
+    height: 100%;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    filter: grayscale(1);
+  }
+
+  .logo-strip--dark .logo-img {
+    filter: grayscale(1) invert(1);
+  }
+
+  .logo-item--fallback { height: auto; }
+
+  .logo-fallback {
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .logo-strip--dark .logo-fallback {
+    color: var(--color-text-dark-muted);
+  }
+</style>
