@@ -15,7 +15,7 @@ const { variant, images = [], text, dark = false, reversed = false } = Astro.pro
     <figure class="media-full-bleed">
       <img src={images[0].src} alt={images[0].alt} loading="lazy"
            class={images[0].rounded ? 'rounded' : ''} />
-      {images[0].caption && <figcaption class="caption label">{images[0].caption}</figcaption>}
+      {images[0].caption && <figcaption class={`caption label ${images[0].captionClass || ''}`}>{images[0].caption}</figcaption>}
     </figure>
   )}
 
@@ -26,7 +26,7 @@ const { variant, images = [], text, dark = false, reversed = false } = Astro.pro
         <figure class="media-split-image">
           <img src={images[0].src} alt={images[0].alt} loading="lazy"
                class={images[0].rounded ? 'rounded' : ''} />
-          {images[0].caption && <figcaption class="caption label">{images[0].caption}</figcaption>}
+          {images[0].caption && <figcaption class={`caption label ${images[0].captionClass || ''}`}>{images[0].caption}</figcaption>}
         </figure>
       )}
     </div>
@@ -38,7 +38,7 @@ const { variant, images = [], text, dark = false, reversed = false } = Astro.pro
         <figure class="media-row-item">
           <img src={img.src} alt={img.alt} loading="lazy"
                class={img.rounded ? 'rounded' : ''} />
-          {img.caption && <figcaption class="caption label">{img.caption}</figcaption>}
+          {img.caption && <figcaption class={`caption label ${img.captionClass || ''}`}>{img.caption}</figcaption>}
         </figure>
       ))}
     </div>
@@ -47,8 +47,8 @@ const { variant, images = [], text, dark = false, reversed = false } = Astro.pro
   {variant === 'centered' && images[0] && (
     <figure class="media-centered">
       <img src={images[0].src} alt={images[0].alt} loading="lazy"
-           class={images[0].rounded ? 'rounded' : ''} />
-      {images[0].caption && <figcaption class="caption label">{images[0].caption}</figcaption>}
+           class={`${images[0].rounded ? 'rounded' : ''} ${images[0].class || ''}`} />
+      {images[0].caption && <figcaption class={`caption label ${images[0].captionClass || ''}`}>{images[0].caption}</figcaption>}
     </figure>
   )}
 
@@ -72,7 +72,7 @@ const { variant, images = [], text, dark = false, reversed = false } = Astro.pro
         {images.map((img) => (
           <figure class="col-stack-item">
             <img src={img.src} alt={img.alt} loading="lazy" />
-            {img.caption && <figcaption class="caption label">{img.caption}</figcaption>}
+            {img.caption && <figcaption class={`caption label ${img.captionClass || ''}`}>{img.caption}</figcaption>}
           </figure>
         ))}
       </div>
@@ -85,7 +85,7 @@ const { variant, images = [], text, dark = false, reversed = false } = Astro.pro
         <figure class="featured-main">
           <img src={images[0].src} alt={images[0].alt} loading="lazy"
                class={images[0].rounded ? 'rounded' : ''} />
-          {images[0].caption && <figcaption class="caption label">{images[0].caption}</figcaption>}
+          {images[0].caption && <figcaption class={`caption label ${images[0].captionClass || ''}`}>{images[0].caption}</figcaption>}
         </figure>
       )}
       <div class="featured-side">
@@ -93,7 +93,7 @@ const { variant, images = [], text, dark = false, reversed = false } = Astro.pro
           <figure class="featured-side-item">
             <img src={img.src} alt={img.alt} loading="lazy"
                  class={img.rounded ? 'rounded' : ''} />
-            {img.caption && <figcaption class="caption label">{img.caption}</figcaption>}
+            {img.caption && <figcaption class={`caption label ${img.captionClass || ''}`}>{img.caption}</figcaption>}
           </figure>
         ))}
       </div>
@@ -209,17 +209,23 @@ const { variant, images = [], text, dark = false, reversed = false } = Astro.pro
     width: 100%;
     height: auto;
     display: block;
-    aspect-ratio: 3/2;
-    object-fit: cover;
+    aspect-ratio: auto;
+    object-fit: contain;
   }
 
   /* Centered */
   .media-centered {
-    max-width: 800px;
+    max-width: 100ch;
     margin-inline: auto;
   }
 
   .media-centered img { width: 100%; }
+
+  /* Surprise Picks: 80% of original size */
+  .surprise-picks-featured {
+    max-width: 80ch;
+    margin-inline: auto;
+  }
 
   /* Captions */
   .caption {
@@ -229,9 +235,9 @@ const { variant, images = [], text, dark = false, reversed = false } = Astro.pro
     text-align: center;
   }
 
-  /* Row captions align left under each photo */
+  /* Row captions align center under each photo */
   .media-row-item .caption {
-    text-align: left;
+    text-align: center;
   }
 
   .media-block--dark .caption { color: var(--color-text-dark-muted); }

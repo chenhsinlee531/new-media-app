@@ -90,7 +90,7 @@
                 {
                   "src": "/images/kkbox-scenes-campaign.jpg",
                   "alt": "Scenes area during a promotional campaign with artist-curated playlists",
-                  "caption": "Artists made moments more engaging",
+                  "caption": "Artists collaboration increased engagement",
                   "rounded": true
                 }
               ]
@@ -108,7 +108,8 @@
                   "src": "/images/kkbox-surprise-picks.gif",
                   "alt": "Surprise Picks feature showing randomized daily song recommendations",
                   "caption": "Surprise Picks: eight daily songs, mostly familiar, a few intentionally not.",
-                  "rounded": true
+                  "rounded": true,
+                  "class": "surprise-picks-featured"
                 }
               ]
             }
@@ -120,8 +121,19 @@
       "number": "04",
       "heading": "Accomplishments",
       "variant": "dark",
-      "body": "<p>The metrics told one story. The more interesting one happened underneath them.</p><p>The Your Scenes feature, designed to help users find the right audio for the right moment became the company’s most effective promotional surface. Local artist collabs, yearly wrapped, seasonal campaigns, curated editorial moments: all of it fit naturally into a container that users already understood and trusted. <p>Things weren't designed for marketing became the best, when the underlying story was right.</p>",
-      "media": []
+      "body": "<p>The metrics told one story. The more interesting one happened underneath them.</p><p>The Your Scenes feature, designed to help users find the right audio for the right moment became the company’s most effective promotional surface. Local artist collabs, yearly wrapped, seasonal campaigns, curated editorial moments: all of it fit naturally into a container that users already understood and trusted. <p>Things weren’t designed for marketing became the best, when the underlying story was right.</p>",
+      "media": [
+        {
+          "variant": "centered",
+          "images": [
+            {
+              "src": "/images/kkbox-on-commute-campaign.jpg",
+              "alt": "KKBOX On Commute campaign featuring local and international artist curated playlists",
+              "caption": "#OnCommute — one of the seasonal campaigns that ran inside Your Scenes."
+            }
+          ]
+        }
+      ]
     }
   ],
   "metrics": [

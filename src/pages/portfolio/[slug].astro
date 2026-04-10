@@ -84,13 +84,13 @@ if (!project) return Astro.redirect('/portfolio');
           section.blocks.map((block: any) => (
             <Fragment>
               {block.heading && (
-                <h3 class={`cs-block-heading reveal ${section.variant === 'dark' ? 'cs-block-heading--dark' : ''}`}>
+                <h3 class={`cs-block-heading reveal ${section.variant === 'dark' ? 'cs-block-heading--dark' : ''} ${block.heading?.includes('3+ New') ? 'cs-block-heading--wide' : ''}`}>
                   {block.heading}
                 </h3>
               )}
               {block.body && (
                 <div
-                  class={`cs-body-text reveal ${section.variant === 'dark' ? 'cs-body-text--dark' : ''}`}
+                  class={`cs-body-text reveal ${section.variant === 'dark' ? 'cs-body-text--dark' : ''} ${!block.media || block.media.length === 0 ? 'cs-body-text--wide' : ''}`}
                   set:html={block.body}
                 />
               )}
@@ -194,13 +194,13 @@ if (!project) return Astro.redirect('/portfolio');
     line-height: var(--leading-tight);
     letter-spacing: -0.025em;
     margin-bottom: var(--space-3);
-    max-width: 16em;
+    max-width: 20em;
   }
 
   .cs-subtitle {
     font-size: var(--text-lg);
     color: var(--color-text-muted);
-    max-width: 52ch;
+    max-width: 100ch;
     line-height: var(--leading-loose);
   }
 
@@ -224,7 +224,7 @@ if (!project) return Astro.redirect('/portfolio');
   }
 
   .cs-detail-value {
-    font-size: var(--text-sm);
+    font-size: var(--text-s);
     color: var(--color-text);
     font-weight: 500;
   }
@@ -268,7 +268,7 @@ if (!project) return Astro.redirect('/portfolio');
   /* Dark sections get generous breathing room */
   .dark-section {
     padding-top: var(--space-7);
-    padding-bottom: var(--space-8);
+    padding-bottom: var(--space-1);
   }
 
   .dark-section + .dark-section {
@@ -288,7 +288,7 @@ if (!project) return Astro.redirect('/portfolio');
   /* Body text in dark sections: slightly larger, more breathing room */
   .dark-section .cs-body-text {
     font-size: 1.25rem;
-    max-width: 60ch;
+    max-width: 100ch;
     margin-bottom: var(--space-6);
   }
 
@@ -301,7 +301,7 @@ if (!project) return Astro.redirect('/portfolio');
     font-size: 1.25rem;
     line-height: var(--leading-loose);
     color: var(--color-text);
-    max-width: 68ch;
+    max-width: 100ch;
     margin-bottom: var(--space-5);
   }
 
@@ -313,7 +313,7 @@ if (!project) return Astro.redirect('/portfolio');
 
   .cs-block-heading {
     font-family: var(--font-heading);
-    font-size: var(--text-xl);
+    font-size: var(--text-2xl);
     line-height: var(--leading-tight);
     letter-spacing: -0.01em;
     color: var(--color-text);
@@ -336,4 +336,10 @@ if (!project) return Astro.redirect('/portfolio');
   }
 
   .cs-footer { background: var(--color-bg); }
+
+  /* Wide text for specific blocks */
+  .cs-body-text--wide {
+    max-width: none !important;
+    width: 100% !important;
+  }
 </style>

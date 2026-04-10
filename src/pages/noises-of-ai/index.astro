@@ -17,7 +17,7 @@ function formatDate(d: Date) {
   <PageIntro
     label="Writing"
     title="Noises of AI"
-    description="Notes on AI, media, and product judgment. What's worth building, what's overhyped, and what should stay human."
+    description={"Notes on AI, media, and product judgment.\nWhat's worth building, what's overhyped, and what should stay human."}
   />
 
   <section class="blog-grid-section section-pad">
@@ -68,7 +68,9 @@ function formatDate(d: Date) {
   /* Masonry via CSS columns */
   .masonry-grid {
     columns: 1;
-    column-gap: var(--space-3);
+    column-gap: var(--space-4);
+    max-width: 2000px;
+    margin-inline: auto;
   }
 
   @media (min-width: 640px) {
@@ -109,7 +111,7 @@ function formatDate(d: Date) {
   .post-card--wide { grid-column: span 1; }
 
   .post-card-inner {
-    padding: var(--space-4);
+    padding: var(--space-5);
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
@@ -123,16 +125,19 @@ function formatDate(d: Date) {
     flex-wrap: wrap;
   }
 
-  .post-date { color: var(--color-text-muted); }
+  .post-date { 
+    color: var(--color-text-muted); 
+    font-size: var(--text-xs);
+  }
 
   .post-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 8px;
   }
 
   .post-tag {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
@@ -144,14 +149,14 @@ function formatDate(d: Date) {
 
   .post-title {
     font-family: var(--font-heading);
-    font-size: var(--text-xl);
+    font-size: var(--text-2xl);
     line-height: var(--leading-tight);
     letter-spacing: -0.01em;
     color: var(--color-text);
   }
 
   .post-excerpt {
-    font-size: var(--text-sm);
+    font-size: var(--text-m);
     color: var(--color-text-muted);
     line-height: var(--leading-normal);
   }
@@ -159,6 +164,7 @@ function formatDate(d: Date) {
   .post-read {
     margin-top: auto;
     color: var(--color-text-muted);
+    font-size: 1rem;
     transition: color var(--duration-fast);
   }
 
