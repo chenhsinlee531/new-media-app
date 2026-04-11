@@ -65,25 +65,27 @@ function formatDate(d: Date) {
 <style>
   .blog-grid-section { background: var(--color-bg); }
 
-  /* Masonry via CSS columns */
+  /* Grid: left-to-right, row-by-row */
   .masonry-grid {
-    columns: 1;
-    column-gap: var(--space-4);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
     max-width: 2000px;
     margin-inline: auto;
+    align-items: start;
   }
 
   @media (min-width: 640px) {
-    .masonry-grid { columns: 2; }
+    .masonry-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (min-width: 1024px) {
-    .masonry-grid { columns: 3; }
+    .masonry-grid { grid-template-columns: repeat(3, 1fr); }
   }
 
   /* Sparse: center single column */
   .masonry-grid--sparse {
-    columns: 1;
+    grid-template-columns: 1fr;
     max-width: 600px;
     margin-inline: auto;
   }
