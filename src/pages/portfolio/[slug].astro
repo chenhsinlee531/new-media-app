@@ -444,7 +444,7 @@ project.sections.forEach((section: any) => {
           }
         }
       });
-    }, { threshold: 0.25, rootMargin: '-10% 0px -50% 0px' });
+    }, { threshold: 0, rootMargin: '-10% 0px -50% 0px' });
 
     navSections.forEach(s => navObserver.observe(s.target!));
 
