@@ -45,45 +45,47 @@ const { testimonials } = Astro.props;
 <script>
   const strip = document.getElementById('testimonial-strip');
   if (strip) {
-    // Drag to scroll
-    let isDown = false;
+    let paused = false;
+    let isDragging = false;
     let startX = 0;
-    let scrollLeft = 0;
+    let startScroll = 0;
 
+    // Drag to scroll
     strip.addEventListener('mousedown', (e) => {
-      isDown = true;
+      isDragging = true;
+      paused = true;
       strip.classList.add('dragging');
-      startX = e.pageX - strip.offsetLeft;
-      scrollLeft = strip.scrollLeft;
+      startX = e.pageX;
+      startScroll = strip.scrollLeft;
     });
-
-    strip.addEventListener('mouseleave', () => { isDown = false; strip.classList.remove('dragging'); });
-    strip.addEventListener('mouseup', () => { isDown = false; strip.classList.remove('dragging'); });
-    strip.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      paused = false;
+      strip.classList.remove('dragging');
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
       e.preventDefault();
-      const x = e.pageX - strip.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      strip.scrollLeft = scrollLeft - walk;
+      strip.scrollLeft = startScroll - (e.pageX - startX) * 1.5;
     });
 
-    // Slow auto-scroll on desktop, paused on hover
-    let autoScroll: number | undefined;
-    const startAutoScroll = () => {
-      autoScroll = window.setInterval(() => {
-        if (strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 2) {
-          strip.scrollLeft = 0;
-        } else {
-          strip.scrollLeft += 0.6;
-        }
-      }, 16);
-    };
+    // Pause on hover
+    strip.addEventListener('mouseenter', () => { if (!isDragging) paused = true; });
+    strip.addEventListener('mouseleave', () => { if (!isDragging) paused = false; });
 
-    if (window.matchMedia('(min-width: 768px)').matches) {
-      startAutoScroll();
-      strip.addEventListener('mouseenter', () => clearInterval(autoScroll));
-      strip.addEventListener('mouseleave', startAutoScroll);
+    // rAF auto-scroll
+    let pos = 0;
+    function tick() {
+      if (!paused) {
+        pos += 0.6;
+        if (pos >= strip.scrollWidth - strip.clientWidth) pos = 0;
+        strip.scrollLeft = pos;
+      } else {
+        pos = strip.scrollLeft;
+      }
+      requestAnimationFrame(tick);
     }
+    requestAnimationFrame(tick);
   }
 </script>
 
@@ -143,10 +145,10 @@ const { testimonials } = Astro.props;
   }
 
   .strip-quote-text {
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
     font-size: var(--text-lg);
     font-style: italic;
-    line-height: var(--leading-normal);
+    line-height: 2;
     color: var(--color-text-dark);
   }
 
@@ -157,12 +159,18 @@ const { testimonials } = Astro.props;
   }
 
   .strip-speaker {
-    font-size: var(--text-base);
-    font-weight: 500;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
     color: var(--color-text-dark);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
   }
 
   .strip-role {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
     color: var(--color-text-dark-muted);
+    letter-spacing: var(--tracking-wide);
   }
 </style>
