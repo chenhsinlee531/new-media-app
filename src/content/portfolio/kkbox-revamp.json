@@ -22,7 +22,8 @@
               "src": "/images/kkbox-before.jpg",
               "alt": "KKBOX homepage before the redesign, showing editorial picks in every section",
               "caption": "Every section on the old homepage was an editorial pick.",
-              "rounded": true
+              "rounded": true,
+              "lightbox": true
             }
           ]
         }
@@ -42,7 +43,8 @@
               "src": "/images/kkbox-feed-architecture.jpg",
               "alt": "Feed architecture diagram showing content sequenced from familiar to exploratory",
               "caption": "Feed structure: familiar at the top, exploratory toward the bottom.",
-              "rounded": true
+              "rounded": true,
+              "lightbox": true
             }
           ]
         }
@@ -90,7 +92,7 @@
                 {
                   "src": "/images/kkbox-scenes-campaign.jpg",
                   "alt": "Scenes area during a promotional campaign with artist-curated playlists",
-                  "caption": "Artists collaboration increased engagement",
+                  "caption": "Local artists collaboration increased engagement",
                   "rounded": true
                 }
               ]

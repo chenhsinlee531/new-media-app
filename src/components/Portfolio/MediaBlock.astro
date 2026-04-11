@@ -25,7 +25,8 @@ const { variant, images = [], text, dark = false, reversed = false } = Astro.pro
       {images[0] && (
         <figure class="media-split-image">
           <img src={images[0].src} alt={images[0].alt} loading="lazy"
-               class={images[0].rounded ? 'rounded' : ''} />
+               class={`${images[0].rounded ? 'rounded' : ''} ${images[0].lightbox ? 'lightbox-trigger' : ''}`}
+               data-src={images[0].lightbox ? images[0].src : undefined} />
           {images[0].caption && <figcaption class={`caption label ${images[0].captionClass || ''}`}>{images[0].caption}</figcaption>}
         </figure>
       )}
@@ -121,6 +122,11 @@ const { variant, images = [], text, dark = false, reversed = false } = Astro.pro
       ))}
     </div>
   )}
+</div>
+
+<div class="lightbox-overlay" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">×</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="" />
 </div>
 
 <style>
@@ -454,6 +460,49 @@ const { variant, images = [], text, dark = false, reversed = false } = Astro.pro
     object-fit: cover;
     display: block;
   }
+
+  /* Lightbox */
+  .lightbox-trigger {
+    cursor: zoom-in;
+    transition: opacity var(--duration-fast);
+  }
+  .lightbox-trigger:hover { opacity: 0.85; }
+
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  .lightbox-overlay.active { display: flex; }
+
+  .lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    cursor: default;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    color: rgba(255,255,255,0.7);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    background: none;
+    border: none;
+    padding: var(--space-1);
+    font-family: var(--font-body);
+  }
+  .lightbox-close:hover { color: #fff; }
 </style>
 
 <script>
@@ -499,5 +548,34 @@ const { variant, images = [], text, dark = false, reversed = false } = Astro.pro
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
+  });
+
+  // Lightbox
+  const overlay = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
+
+  document.querySelectorAll<HTMLImageElement>('.lightbox-trigger').forEach(img => {
+    img.addEventListener('click', () => {
+      if (!overlay || !lightboxImg) return;
+      lightboxImg.src = img.dataset.src ?? img.src;
+      lightboxImg.alt = img.alt;
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  const closeLightbox = () => {
+    overlay?.classList.remove('active');
+    overlay?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  document.getElementById('lightbox-close')?.addEventListener('click', closeLightbox);
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
   });
 </script>
