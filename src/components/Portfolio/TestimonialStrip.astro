@@ -19,7 +19,6 @@ const { testimonials } = Astro.props;
 
 <div class="strip-wrap">
   <div class="strip-label-row">
-    <span class="strip-label-line"></span>
     <span class="strip-label label">Speaker Testimonials</span>
   </div>
   <div class="strip" id="testimonial-strip">
@@ -108,19 +107,10 @@ const { testimonials } = Astro.props;
   }
 
   .strip-label-row {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    padding-inline: var(--space-5);
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-4);
     margin-bottom: var(--space-4);
-  }
-
-  .strip-label-line {
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--color-border-dark);
-    flex-shrink: 0;
   }
 
   .strip-label {
