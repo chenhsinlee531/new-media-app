@@ -17,9 +17,32 @@ const all = files.map(f => JSON.parse(fs.readFileSync(path.join(contentDir, f), 
 const project = all.find(p => p.slug === slug);
 
 if (!project) return Astro.redirect('/portfolio');
+
+// Build scroll nav items
+const navItems: { id: string; label: string }[] = [];
+project.sections.forEach((section: any) => {
+  navItems.push({ id: `section-${section.number}`, label: `${section.number} ${section.heading}` });
+  if (section.blocks) {
+    section.blocks.forEach((block: any) => {
+      if (block.showInNav && block.heading) {
+        const id = `block-${block.heading.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+        navItems.push({ id, label: block.heading });
+      }
+    });
+  }
+});
 ---
 
 <BaseLayout title={`${project.title} — ChenHsin Lee`} description={project.subtitle}>
+  <!-- Scroll nav -->
+  <nav class="scroll-nav" aria-label="Page sections">
+    <div class="scroll-nav-line"></div>
+    {navItems.map((item) => (
+      <a href={`#${item.id}`} class="scroll-nav-dot" data-nav-id={item.id} aria-label={item.label}>
+        <span class="scroll-nav-block"></span>
+      </a>
+    ))}
+  </nav>
   <!-- Case Study Header -->
   <header class="cs-header">
     <div class="cs-header-inner">
@@ -72,7 +95,7 @@ if (!project) return Astro.redirect('/portfolio');
 
   <!-- Case Study Body Sections -->
   {project.sections.map((section: any) => (
-    <section class={`cs-section ${section.variant === 'dark' ? 'dark-section' : ''}`}>
+    <section id={`section-${section.number}`} class={`cs-section ${section.variant === 'dark' ? 'dark-section' : ''}`}>
       <div class="cs-section-inner">
         <SectionHeader
           number={section.number}
@@ -84,7 +107,10 @@ if (!project) return Astro.redirect('/portfolio');
           section.blocks.map((block: any) => (
             <Fragment>
               {block.heading && (
-                <h3 class={`cs-block-heading reveal ${section.variant === 'dark' ? 'cs-block-heading--dark' : ''} ${block.heading?.includes('3+ New') ? 'cs-block-heading--wide' : ''}`}>
+                <h3
+                  id={block.showInNav ? `block-${block.heading.toLowerCase().replace(/[^a-z0-9]+/g, '-')}` : undefined}
+                  class={`cs-block-heading reveal ${section.variant === 'dark' ? 'cs-block-heading--dark' : ''} ${block.heading?.includes('3+ New') ? 'cs-block-heading--wide' : ''}`}
+                >
                   {block.heading}
                 </h3>
               )}
@@ -342,4 +368,92 @@ if (!project) return Astro.redirect('/portfolio');
     max-width: none !important;
     width: 100% !important;
   }
+
+  /* Scroll nav */
+  .scroll-nav {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 50;
+  }
+
+  @media (max-width: 1100px) {
+    .scroll-nav { display: none; }
+  }
+
+  .scroll-nav-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    background: var(--color-border);
+    z-index: -1;
+  }
+
+  .scroll-nav-dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .scroll-nav-block {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    background: var(--color-border);
+    transition: background var(--duration-fast), transform var(--duration-fast);
+  }
+
+  .scroll-nav-dot.active .scroll-nav-block {
+    background: var(--color-accent);
+    transform: scale(1.5);
+  }
 </style>
+
+<script>
+  // Scroll nav: highlight active section
+  const navDots = document.querySelectorAll<HTMLElement>('[data-nav-id]');
+  const navSections = Array.from(navDots).map(dot => ({
+    dot,
+    target: document.getElementById(dot.dataset.navId ?? '')
+  })).filter(s => s.target);
+
+  if (navSections.length > 0) {
+    // Set first dot active initially
+    navSections[0].dot.classList.add('active');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = navSections.findIndex(s => s.target === entry.target);
+          if (idx !== -1) {
+            navDots.forEach(d => d.classList.remove('active'));
+            navSections[idx].dot.classList.add('active');
+          }
+        }
+      });
+    }, { threshold: 0.25, rootMargin: '-10% 0px -50% 0px' });
+
+    navSections.forEach(s => navObserver.observe(s.target!));
+
+    // Smooth scroll on click
+    navDots.forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById(dot.dataset.navId ?? '')?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  }
+</script>

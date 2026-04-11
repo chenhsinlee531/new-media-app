@@ -78,6 +78,8 @@
           ]
         },
         {
+          "showInNav": true,
+          "heading": "Your Scenes for the Moment",
           "body": "<p><strong>Your Scenes for the Moment</strong></p><p>We created default popular listening scenes: Relax, Focus, and Refreshing, that grouped playlists around how users wanted to feel rather than what genre they preferred. Users could also create their own scenes to match their daily routines.</p><p>The design was intentionally simple. Someone who listens to different things before bed every night could build a scene for that and reach it in one tap. The point was to make the right audio easy to find in the moment you need it.</p>",
           "media": [
             {
@@ -100,6 +102,8 @@
           ]
         },
         {
+          "showInNav": true,
+          "heading": "Turning Relevance into Choice",
           "body": "<p><strong>Turning Relevance into Choice</strong></p><p>New AI personalized playlists powered by the recommendation algorithm were also built. These factored in listening patterns, time of day, recent behavior, and taste similarity. <strong>The goal was playlists that felt right for now, not just playlists that sounded like what you played last week.</strong></p><p>One new feature, Surprise Picks, was introduced as a daily set of eight songs, mostly drawn from genres a user already loved, with a few picks deliberately one or two steps outside their usual range. A feature put the 80/20 principle into practice at the song level.</p><p>We also gave more visual cues throughout to help users identify interested contents on the feed. Instead of showing one playlist at a time, the new design displayed multiple cards side by side so users could scan and choose across options. Each card surfaced artists the user already followed or had saved in their library, signaling relevance before they even tapped in.</p>",
           "media": [
       
