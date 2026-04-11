@@ -18,6 +18,10 @@ const { testimonials } = Astro.props;
 ---
 
 <div class="strip-wrap">
+  <div class="strip-label-row">
+    <span class="strip-label-line"></span>
+    <span class="strip-label label">Speaker Testimonials</span>
+  </div>
   <div class="strip" id="testimonial-strip">
     {testimonials.map((t) => (
       <div class="strip-item">
@@ -98,8 +102,32 @@ const { testimonials } = Astro.props;
     margin-left: -50vw;
     margin-right: -50vw;
     background: var(--color-bg-dark);
-    padding-block: var(--space-6);
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-6);
     overflow: hidden;
+  }
+
+  .strip-label-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding-inline: var(--space-5);
+    margin-bottom: var(--space-4);
+  }
+
+  .strip-label-line {
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--color-border-dark);
+    flex-shrink: 0;
+  }
+
+  .strip-label {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-text-dark-muted);
   }
 
   .strip {
