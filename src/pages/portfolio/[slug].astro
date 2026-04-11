@@ -106,13 +106,16 @@ project.sections.forEach((section: any) => {
         {section.blocks ? (
           section.blocks.map((block: any) => (
             <Fragment>
-              {block.heading && (
+              {block.heading && block.showHeading !== false && (
                 <h3
                   id={block.showInNav ? `block-${block.heading.toLowerCase().replace(/[^a-z0-9]+/g, '-')}` : undefined}
                   class={`cs-block-heading reveal ${section.variant === 'dark' ? 'cs-block-heading--dark' : ''} ${block.heading?.includes('3+ New') ? 'cs-block-heading--wide' : ''}`}
                 >
                   {block.heading}
                 </h3>
+              )}
+              {block.heading && block.showHeading === false && block.showInNav && (
+                <span id={`block-${block.heading.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`} />
               )}
               {block.body && (
                 <div
